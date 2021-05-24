@@ -1,7 +1,7 @@
-import { Scene, WebGLRenderer, PerspectiveCamera } from 'three';
+import { Scene, WebGLRenderer, PerspectiveCamera, Group } from 'three';
 
 const params = {
-  fov: 45,
+  fov: 20,
   near: 0.1,
   far: 1000,
   width: window.innerWidth,
@@ -12,16 +12,20 @@ const params = {
 const scene = new Scene();
 
 const camera = new PerspectiveCamera(params.fov, params.width / params.height, params.near, params.far);
-camera.position.set(0, 0, 0);
+camera.position.set(10, 10, 10);
+camera.lookAt(0,0,0);
+const camGroup = new Group();
+camGroup.add(camera);
+scene.add(camGroup);
 const renderer = new WebGLRenderer({alpha: true});
 renderer.setSize(params.width, params.height);
-renderer.setClearColor("slategray");
+renderer.setClearColor("slateblue");
 document.body.appendChild(renderer.domElement);
 
 function drawLoop() {
   requestAnimationFrame(drawLoop);
   renderer.render(scene, camera);
-  camera.rotation.y += 0.01;
+  camGroup.rotation.y += 0.003;
 }
 
 drawLoop();
