@@ -4,12 +4,15 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width initial-sclae=1"/>
     <meta name="description" content="A city building toy"/>
-    <link rel="stylesheet" href="/static/main.css">
+    <link rel="stylesheet" href="./static/main.css">
     <title>Cityscape</title>
   </head>
   <body>
-    <script type="module" src="./index.js"></script>
-    <script type="module" src="./modules/citytest.js"></script>
-
+    <script type="module" src="./index.js" defer></script>
+    <script type="module" src="./modules/city-manager.js" defer></script>
+    <div id="editor">
+      <div class="picker" id="picker"></div>
+      <div class="picker" id="picker2"></div>
+    </div>
   </body>
 </html>

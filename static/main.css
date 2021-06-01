@@ -3,3 +3,20 @@
   padding: 0;
   margin: 0;
 }
+body{
+  background-color: white;
+  font-size: 21px;
+  padding: 1rem;
+}
+canvas {
+  position: fixed;
+  z-index: -10;
+  top: 0;
+  left: 0;
+}
+.IroColorPicker{
+  display: inline-block !important;
+}
+#editor {
+  width: 20%;
+}
