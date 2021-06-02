@@ -1,0 +1,183 @@
+.widget {
+  font-size: 1rem;
+  width: 300px;
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+  height: auto;
+  background-color: var(--ui-bg);
+  border-radius: 4px;
+  color: var(--ui-text);
+  margin-bottom: 1rem;
+}
+
+.widget.collapse {
+  height: 3.25rem;
+}
+
+#swatch-preview{
+  width: 50%;
+  height: 6rem;
+
+  background: var(--ui-bg);
+}
+
+.option {
+  display: block;
+}
+
+.space {
+  height: 2rem;
+}
+
+.widget li {
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+
+.widget li:hover::before {
+  content: "— "
+}
+
+.widget li.selected{
+  color: var(--ui-selected);
+}
+
+.widget li.selected::before {
+  content: "— "
+}
+
+.widget h1 {
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding-bottom: 0.5em;
+  margin: 0;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  background: var(--ui-light);
+  width: 1rem;
+  height: 1rem;
+  border-radius: 100px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.close:hover {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  background: var(--ui-text);
+  width: 1rem;
+  height: 1rem;
+  border-radius: 100px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.widget h2 {
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  /* text-align: center; */
+  border-bottom: 1px solid var(--ui-light);
+}
+
+
+
+.control-row {
+  display: flex;
+  height: 2rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.flex-area {
+  display: flex;
+  flex-flow: row;
+}
+
+.flex-area > * {
+  width: 50%;
+}
+
+label {
+  width: 35%;
+  /* font-size: 0.8em; */
+
+}
+
+.slider-value {
+  /* background: var(--ui-light); */
+  width: calc(15%);
+  /* height: 1.5rem; */
+  text-align: right;
+}
+
+
+/* RESET RANGE SLIDER APPEARENCE */
+input[type=range] {
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 50%; /* Specific width is required for Firefox. */
+  height: 1.5rem;
+  background: var(--ui-light);
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+
+  /* Hides the slider so custom styles can be added */
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 1.5rem;
+  width: 0.75rem;
+  border-radius: 0;
+  background: var(--ui-text);
+  cursor: ew-resize;
+  margin-top: 0px;
+  box-shadow: none;
+}
+
+/* All the same stuff for Firefox */
+input[type=range]::-moz-range-thumb {
+  border: none;
+  height: 1.5rem;
+  width: 0.75rem;
+  border-radius: 0;
+  background: var(--ui-text);
+  cursor: ew-resize;
+  margin-top: 0px;
+  box-shadow: none;
+}
+
+/* All the same stuff for IE */
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}

@@ -1,17 +1,17 @@
-const DEF_SIZE = 4;
+const DEF_SIZE = 5;
 
 const DEF_COLORS = {
-  background: 0x6a6a6a,
-  ambient: 0x68c3a6,
-  main: 0xffffff,
-  foliage: 0x67c32f,
-  accent: 0xc34d2f,
+  background: 'hsl(0, 0%, 60%)',
+  ambient: 'hsl(0, 0%, 35%)',
+  main: 'hsl(0, 0%, 100%)',
+  foliage: 'hsl(120, 50%, 70%)',
+  accent: 'hsl(320, 50%, 70%)',
 };
 
 const DEF_FOG = {
   color: DEF_COLORS.background,
-  start: 5,
-  end: 16
+  start: 0,
+  end: 30
 };
 
 class City {

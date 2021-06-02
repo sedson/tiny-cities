@@ -14,7 +14,6 @@
     "snowpack": "^3.5.1"
   },
   "dependencies": {
-    "@jaames/iro": "^5.5.1",
     "three": "^0.128.0"
   }
 }

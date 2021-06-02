@@ -6,7 +6,8 @@ import {
   Fog,
   Color,
   AmbientLight,
-  DirectionalLight
+  DirectionalLight,
+  MOUSE,
 } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
@@ -42,7 +43,7 @@ class SceneSkeleton {
     );
 
     // configue camera to orbit the center
-    this.camera.position.set(7, 3.5, 7);
+    this.camera.position.set(9, 4, 9);
     this.camera.lookAt(0, this.viewTarget, 0);
     this.camGroup = new Group();
     this.camGroup.add(this.camera);
@@ -67,6 +68,9 @@ class SceneSkeleton {
       this.controls.enablePan  = false;
       this.controls.maxPolarAngle = (Math.PI / 2) - (Math.PI / 50);
       this.controls.update();
+      this.controls.mouseButtons = {
+        RIGHT: MOUSE.ROTATE,
+      }
     }
 
 
@@ -106,7 +110,7 @@ class SceneSkeleton {
   }
 
   setAmbient(color) {
-
+    this.ambient.color = color;
   }
 
   setFog(params) {

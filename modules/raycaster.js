@@ -9,10 +9,10 @@ export default class CustomRaycaster {
     this.raycaster = new Raycaster();
     this.camera = scene.camera;
     this.domElement = scene.renderer.domElement;
-    this.domElement.addEventListener('pointermove', () => this.pointerMove())
+    this.domElement.addEventListener('pointermove', (event) => this.pointerMove(event))
   }
 
-  pointerMove() {
+  pointerMove(event) {
     this.pointer.x = ( event.clientX / this.domElement.clientWidth ) * 2 - 1;
     this.pointer.y = - ( event.clientY / this.domElement.clientHeight ) * 2 + 1;
   }

@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import { SceneSkeleton } from './scene-skeleton.js';
-import { CustomLoader } from './custom-loader.js';
 import { City } from './city.js'
 import { makeGround, makeGrid } from './geometry-helpers.js'
 import CustomRaycaster from './raycaster.js'
@@ -9,26 +8,21 @@ import {test} from './test-json.js';
 const whiteMaterial = new THREE.MeshLambertMaterial({color: 'white'});
 const yellowMaterial = new THREE.MeshBasicMaterial({color: 'yellow'});
 
-const SIZE = 4;
 const UNIT_HEIGHT = 0.2;
 
 const camParams = {
-  fov: 20,
+  fov: 18,
   near: 0.1,
   far: 1000
 }
 
-const loader = new CustomLoader();
-
 class CityManager {
-  constructor(city_data, editMode = false) {
+  constructor(cityData, gltfData, editMode = false) {
 
     // Load the units from the asset file
 
     // initializae the scene
     this.scene = new SceneSkeleton(camParams, editMode);
-    this.units = {};
-    loader.load('../assets/blocks.glb', this.units)
 
     // a grid of IDs to manage store data for deleting units
     this.unitIDs = {};
@@ -36,42 +30,46 @@ class CityManager {
     // array of objects to raycast against
     this.raycastObjects = [];
 
-    this.city = new City(city_data);
+    this.city = new City(cityData);
+
+    // create materials from the city data colors
+    this.materials = {
+      main: new THREE.MeshLambertMaterial({color: this.city.colors.main}),
+      foliage: new THREE.MeshBasicMaterial({color: this.city.colors.foliage}),
+      accent: new THREE.MeshBasicMaterial({color: this.city.colors.accent}),
+    }
+
+    this.units = parseGLTF(gltfData, this.materials);
+
+
+    this.activeUnit = 'Basic';
 
     // builds the city from data
-    // set to a timeout because loading the glb data
-    // is async and not im hacking around that
 
-    setTimeout( () => {
-      for (let block of Object.values(this.city.blocks)) {
-        const { x, z } = block.position;
+    for (let block of Object.values(this.city.blocks)) {
+      const { x, z } = block.position;
 
-        block.units.forEach((item, i) => {
-          const y = i * UNIT_HEIGHT;
-          const u = this.units[item];
-          if (u) this.buildUnitMesh(u, x, y, z);
-        })
+      block.units.forEach((item, i) => {
+        const y = i * UNIT_HEIGHT;
+        const u = this.units[item];
+        if (u) this.buildUnitMesh(u, x, y, z);
+      })
+    }
 
-      }
-    }, 200)
 
-    this.scene.setBackground(this.city.colors.background);
     this.scene.setFog(this.city.fog);
+    this.setColor('background', this.city.colors.background);
+    this.setColor('ambient', this.city.colors.ambient);
 
     this.raycaster = new CustomRaycaster(this.scene);
     this.activePoint = [0,0];
 
-    this.materials = {
-    }
 
-    this.editorState = {
-    }
-
-    const ground = makeGround(100, whiteMaterial);
+    const ground = makeGround(300, whiteMaterial);
     this.scene.add(ground);
     this.raycastObjects.push(ground);
 
-    if (editMode) this.scene.add(makeGrid(SIZE));
+    if (editMode) this.scene.add(makeGrid(this.city.size));
 
     this.previewer = new THREE.Mesh(
       new THREE.PlaneGeometry(1, 1, 1),
@@ -80,32 +78,42 @@ class CityManager {
 
     this.previewer.rotation.set(- Math.PI / 2, 0, 0)
 
-    this.scene.add(this.previewer);
+    if (editMode) this.scene.add(this.previewer);
 
 
     if (editMode) {
       this.scene.subscribe(() => {
-        this.activePoint = (this.raycaster.raycast(this.raycastObjects, SIZE));
+        this.activePoint = (this.raycaster.raycast(this.raycastObjects, this.city.size));
         if (this.activePoint) {
-          // console.log(this.activePoint)
           const block = this.city.getBlock(this.activePoint.x, this.activePoint.z);
-          // console.log(block);
-          this.previewer.position.set(block.position.x, 0.01, block.position.z)
-        }
-        else {
+          if (block) this.previewer.position.set(block.position.x, 0.01, block.position.z)
+        } else {
           this.previewer.position.set(0, -10, 0)
          }
 
       })
 
-      this.scene.renderer.domElement.addEventListener('contextmenu', () => {
+      this.scene.renderer.domElement.onpointerdown = (e) => {
+        if (e.button === 2){
+          this.previewer.visible = false
+        }
+      }
+
+      this.scene.renderer.domElement.onpointerup = (e) => {
+        if (e.button === 2){
+          this.previewer.visible = true
+        }
+      }
+      this.scene.renderer.domElement.addEventListener('click', () => {
         if (this.activePoint) {
           const block = this.city.getBlock(this.activePoint.x, this.activePoint.z);
           if (block) {
-            this.addUnitHandler('Basic', block)
+            this.addUnitHandler(this.activeUnit, block)
           }
         }
       })
+
+
 
       document.addEventListener('keydown', (event) => {
         console.log(event.keyCode);
@@ -118,8 +126,6 @@ class CityManager {
       })
 
     }
-
-
   }
 
 
@@ -128,7 +134,6 @@ class CityManager {
 
     const clone = unit.clone();
     clone.position.set(x, y, z);
-    console.log(unit);
 
     // update the memory object for units that can be deleted
     if ( ! this.unitIDs[`${x}, ${z}`]) {
@@ -167,15 +172,63 @@ class CityManager {
         this.scene.removeObject(deleteId);
         this.raycastObjects = this.raycastObjects.filter(x => x.id !== deleteId)
       }
-
-
-
-
     }
+  }
+
+  setColor(colorName, colorValue) {
+    this.city.colors[colorName] = colorValue;
+    const col = new THREE.Color(colorValue);
+
+    if (colorName === "background") {
+      this.scene.setBackground(col);
+      this.scene.setFog({color: col});
+      return;
+    }
+
+    if (colorName === 'ambient') {
+      this.scene.setAmbient(col);
+    }
+
+    if (this.materials[colorName]) {
+      this.materials[colorName].color.set(col);
+    }
+  }
+
+  setFog(params) {
+    this.city.fog.start = params.start;
+    this.city.fog.end = params.end;
+    this.scene.setFog(params);
 
 
   }
+
+  setActiveUnit(unit) {
+    this.activeUnit = unit;
+  }
+
+}
+
+// Loops over the GLTF data imported from blender,
+// and resets the transform, and applies proper materials
+// returns an object containing the protypes for
+// each unit
+function parseGLTF(gltf, materials){
+const units = {};
+  gltf.scene.children.forEach(item => {
+
+    item.position.set(0,0,0);
+    if (item.children.length > 0) {
+      for (let child of item.children) {
+        child.material = materials[child.material.name.toLowerCase()] || materials.main;
+      }
+    } else {
+      item.material = materials[item.material.name.toLowerCase()] || materials.main;
+    }
+
+    units[item.name] = item;
+  })
+  return units;
 }
 
 
-const manager = new CityManager(JSON.parse(test), true);
+export { CityManager }

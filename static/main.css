@@ -1,22 +1,64 @@
+@font-face {
+  font-family: 'Hack';
+  src: url('./fonts/hack-regular.woff?sha=3114f1256') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root{
+  --ui-bg: #eee;
+  --ui-text: #666;
+  --ui-light: #ccc;
+  --ui-selected: #000;
+  --ui--accent: hotpink;
+  --current-selection: yellow;
+
+  font-size: 12px;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-weight: normal;
 }
-body{
-  background-color: white;
-  font-size: 21px;
+
+
+body {
+  font-size: 1rem;
   padding: 1rem;
+  color: var(--ui-text);
+  background: var(--ui-bg);
+  font-family: Hack, monospace;
 }
+
+
 canvas {
   position: fixed;
   z-index: -10;
   top: 0;
   left: 0;
 }
-.IroColorPicker{
-  display: inline-block !important;
-}
+
 #editor {
-  width: 20%;
+  position: absolute;
+  /* right: 1rem; */
+}
+
+.button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--ui-light);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: var(--ui-light);
+}
+
+a {
+  color: var(--ui-text);
+  text-decoration: none;
 }

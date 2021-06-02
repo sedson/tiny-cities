@@ -1,7 +1,6 @@
 import { PlaneGeometry, Mesh, GridHelper } from 'three';
 
 const makeGround = (size, material) => {
-  console.log('ground');
   const geo = new PlaneGeometry(size, size, 1 , 1);
   const mesh = new Mesh(geo, material);
   mesh.position.set(0, 0, 0);

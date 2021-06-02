@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width initial-sclae=1"/>
+    <meta name="description" content="A city building toy"/>
+    <link rel="stylesheet" href="/static/main.css">
+    <link rel="stylesheet" href="/static/loading.css">
+    <link rel="stylesheet" href="/static/widgets.css">
+    <script type="module" src="/js/edit.js" defer></script>
+
+    <script type="text/javascript">
+      const toggleCollapse = (e) => {
+        console.log(e.target.parentNode)
+        e.target.parentNode.classList.toggle('collapse')
+      }
+    </script>
+
+    <title>Tiny Cities – Editor</title>
+  </head>
+  <body>
+    <div id="loading">
+      <p>Tiny Cities</p>
+      <div>
+        <span class="l">·</span>
+        <span class="l">·</span>
+        <span class="l">·</span>
+      </div>
+    </div>
+
+    <div id="editor">
+
+      <div class="widget">
+        <h1>Tiny Cities</h1>
+        <span role="button" class="button" id="save">Save</span>
+        <span role="button" class="button" id="save">View</span>
+        <span role="button" class="button" id="save">Delete</span>
+      </div>
+
+      <div class="widget collapse">
+        <span role="button" type="button" name="close" class="close" onclick="toggleCollapse(event)"></span>
+        <h1>Info</h1>
+        <!-- <div class="control-row">
+          <label for="title">Title</label>
+          <input type="text" name="title" value="" placeholder="...">
+        </div> -->
+        <h2>Sharing Link</h2>
+        <p id="sharelink">https://</p>
+      </div>
+
+      <div class="widget">
+        <span role="button" type="button" name="close" class="close" onclick="toggleCollapse(event)"></span>
+        <h1>Units</h1>
+        <h2>Available Units</h2>
+        <ul id="unit-list"></ul>
+      </div>
+
+
+      <div class="widget collapse">
+        <span role="button" type="button" name="close" class="close" onclick="toggleCollapse(event)"></span>
+        <h1>Colors</h1>
+        <h2>Scene Colors</h2>
+        <div class="flex-area">
+          <ul>
+            <li class="option color-select selected">Background</li>
+            <li class="option color-select">Ambient</li>
+            <li class="option color-select">Foliage</li>
+            <li class="option color-select">Accent</li>
+            <li class="option color-select">Main</li>
+
+          </ul>
+          <div id="swatch-preview"></div>
+
+        </div>
+
+
+        <div class="space"></div>
+        <h2>Color Settings</h2>
+        <div id="color-picker">
+          <div class="control-row">
+            <label for="hue">Hue</label>
+            <input type="range" name="hue" min="0" max="360" value="180" id="hue-slider">
+            <span class="slider-value"></span>
+          </div>
+          <div class="control-row">
+            <label for="saturation">Saturation</label>
+            <input type="range" name="saturation" min="0" max="100" value="50" id="saturation-slider">
+            <span class="slider-value"></span>
+
+          </div>
+          <div class="control-row">
+            <label for="lightness">Lightness</label>
+            <input type="range" name="lightness" min="0" max="100" value="50" id="lightness-slider">
+            <span class="slider-value"></span>
+          </div>
+          <div class="space"></div>
+        </div>
+
+
+      </div>
+
+      <div class="widget collapse">
+        <span role="button" type="button" name="close" class="close" onclick="toggleCollapse(event)"></span>
+        <h1>Fog</h1>
+        <div class="control-row">
+          <label for="fog-start">Fog Start</label>
+          <input type="range" name="fog-start" min="0" max="100" value="50" id="fog-start">
+          <span class="slider-value"></span>
+
+        </div>
+        <div class="control-row">
+          <label for="fog_end">Fog End</label>
+          <input type="range" name="fog-end" min="0" max="100" value="50" id="fog-end">
+          <span class="slider-value"></span>
+
+        </div>
+
+      </div>
+    </div>
+
+
+  </body>
+</html>

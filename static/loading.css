@@ -1,0 +1,40 @@
+#loading {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  flex-flow: column;
+  background: #eee;
+  top: 0;
+  left: 0;
+  padding :1rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1s ease-in-out;
+}
+
+@keyframes load {
+  0% {right: 0}
+  50% {right: 5px}
+  100% {right: 0}
+}
+
+.l {
+  position: relative;
+  animation: load;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+}
+
+.l:nth-child(3n+0){
+  animation-delay: 0.4s;
+}
+
+.l:nth-child(3n+1){
+  animation-delay: 0.0;
+}
+
+.l:nth-child(3n+2){
+  animation-delay: 0.2s;
+}
