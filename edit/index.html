@@ -32,20 +32,35 @@
 
       <div class="widget">
         <h1>Tiny Cities</h1>
-        <span role="button" class="button" id="save">Save</span>
-        <span role="button" class="button" id="save">View</span>
-        <span role="button" class="button" id="save">Delete</span>
+        <div class="">
+          <a class="button" href="/">Home</a>
+          <span role="button" class="button" id="save">Save</span>
+          <span role="button" class="button" id="view">View</span>
+          <span role="button" class="button" id="delete">Delete</span>
+        </div>
       </div>
 
-      <div class="widget collapse">
+      <!-- <div class="widget">
+        <h1>Tools</h1>
+        <div class="">
+          <span role="button" class="button" id="save">Build</span>
+          <span role="button" class="button" id="save">Delete</span>
+          <span role="button" class="button" id="save">Rotate</span>
+        </div>
+      </div> -->
+
+
+      <div class="widget">
         <span role="button" type="button" name="close" class="close" onclick="toggleCollapse(event)"></span>
         <h1>Info</h1>
+        <h2>Controls</h2>
+        <p><em>Left click</em> to add buildings.<br><em>Right click</em> to rotate scene. <br><em>Backspace</em> to remove units.</p>
         <!-- <div class="control-row">
           <label for="title">Title</label>
           <input type="text" name="title" value="" placeholder="...">
-        </div> -->
+        </div>
         <h2>Sharing Link</h2>
-        <p id="sharelink">https://</p>
+        <p id="sharelink">https://</p> -->
       </div>
 
       <div class="widget">
@@ -66,8 +81,6 @@
             <li class="option color-select">Ambient</li>
             <li class="option color-select">Foliage</li>
             <li class="option color-select">Accent</li>
-            <li class="option color-select">Main</li>
-
           </ul>
           <div id="swatch-preview"></div>
 
@@ -117,7 +130,9 @@
 
       </div>
     </div>
-
+    <footer>
+      <a class="button" style="display: inline-block" href="/">HOME</a>
+    </footer>
 
   </body>
 </html>

@@ -9,21 +9,33 @@
   border-radius: 4px;
   color: var(--ui-text);
   margin-bottom: 1rem;
+  user-select: none;
 }
-
+.tranparent{
+  background: none;
+  color: var(--ui-bg);
+}
 .widget.collapse {
   height: 3.25rem;
 }
 
 #swatch-preview{
-  width: 50%;
-  height: 6rem;
-
+  width: 5rem;
+  margin: 0 1.5rem;
+  height: 5rem;
+  border-radius: 4px;
   background: var(--ui-bg);
 }
 
 .option {
   display: block;
+  padding: 0.25em;
+  margin: 0;
+  border-radius: 4px;
+}
+
+.option:nth-child(2n+1){
+  background: var(--ui-very-light);
 }
 
 .space {
@@ -32,19 +44,19 @@
 
 .widget li {
   cursor: pointer;
-  margin-bottom: 0.5rem;
 }
 
 .widget li:hover::before {
-  content: "— "
+  content: " • "
 }
 
 .widget li.selected{
   color: var(--ui-selected);
+  background: var(--ui--accent);
 }
 
 .widget li.selected::before {
-  content: "— "
+  content: " • "
 }
 
 .widget h1 {
@@ -86,7 +98,7 @@
   margin-bottom: 0.5rem;
   padding-bottom: 0.5rem;
   /* text-align: center; */
-  border-bottom: 1px solid var(--ui-light);
+  /* border-bottom: 1px solid var(--ui-light); */
 }
 
 
@@ -127,6 +139,7 @@ input[type=range] {
   width: 50%; /* Specific width is required for Firefox. */
   height: 1.5rem;
   background: var(--ui-light);
+  border-radius: 4px;
 }
 
 input[type=range]::-webkit-slider-thumb {
@@ -152,7 +165,7 @@ input[type=range]::-webkit-slider-thumb {
   border: none;
   height: 1.5rem;
   width: 0.75rem;
-  border-radius: 0;
+  border-radius: 4px;
   background: var(--ui-text);
   cursor: ew-resize;
   margin-top: 0px;
@@ -164,7 +177,7 @@ input[type=range]::-moz-range-thumb {
   border: none;
   height: 1.5rem;
   width: 0.75rem;
-  border-radius: 0;
+  border-radius: 4px;
   background: var(--ui-text);
   cursor: ew-resize;
   margin-top: 0px;
@@ -173,11 +186,12 @@ input[type=range]::-moz-range-thumb {
 
 /* All the same stuff for IE */
 input[type=range]::-ms-thumb {
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  border: 1px solid #000000;
-  height: 36px;
-  width: 16px;
-  border-radius: 3px;
-  background: #ffffff;
-  cursor: pointer;
+  border: none;
+  height: 1.5rem;
+  width: 0.75rem;
+  border-radius: 4px;
+  background: var(--ui-text);
+  cursor: ew-resize;
+  margin-top: 0px;
+  box-shadow: none;
 }

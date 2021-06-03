@@ -31,6 +31,7 @@ class SceneSkeleton {
 
     this.editMode = editMode;
     this.viewTarget = params.viewTarget || VIEW_TARGET;
+    if (! editMode) this.viewTarget = 1;
 
     this.scene = new Scene();
     // this.scene.fog = new Fog();
@@ -142,8 +143,7 @@ class SceneSkeleton {
   }
 
   removeObject(objectId) {
-    console.log(objectId);
-    // .removeFromParent();
+
     this.scene.remove(this.scene.children.find(x => x.id === objectId))
   }
 }

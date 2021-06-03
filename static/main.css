@@ -10,11 +10,13 @@
   --ui-bg: #eee;
   --ui-text: #666;
   --ui-light: #ccc;
+  --ui-very-light: #ddde;
   --ui-selected: #000;
-  --ui--accent: hotpink;
+  --ui--accent: #f0ff40;
   --current-selection: yellow;
 
   font-size: 12px;
+  line-height: 1.6;
 }
 
 * {
@@ -61,4 +63,62 @@ canvas {
 a {
   color: var(--ui-text);
   text-decoration: none;
+}
+
+h1 {
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.gallery {
+  display: flex;
+}
+
+.card {
+  width: 20%;
+  height: 140px;
+  border-radius: 4px;
+
+}
+
+footer {
+  position: fixed;
+  display: block;
+  width: auto;
+  bottom: 1rem;
+  right: 1rem;
+  background: var(--ui-bg);
+  width: 300px;
+}
+
+footer a, footer .button {
+  color: var(--ui-light);
+}
+
+footer a:hover, footer .button:hover {
+  background-color: #00000033
+}
+
+em {
+  color: var(--ui-selected);
+  background: var(--ui--accent);
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+}
+
+.widget {
+  font-size: 1rem;
+  width: 300px;
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+  height: auto;
+  background-color: var(--ui-bg);
+  border-radius: 4px;
+  color: var(--ui-text);
+  margin-bottom: 1rem;
+  user-select: none;
 }

@@ -1,11 +1,13 @@
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { CityManager } from '../modules/city-manager.js';
 import ColorWidget from '../modules/color-widget.js'
+import { put, get, del} from '../modules/requests.js'
 
 
 let SELECTED_COLOR = 'background';
 let MANAGER;
 let COLOR_PICKER;
+let CITY_ID;
 
 
 // loops over element's siblings and deselects them,
@@ -79,9 +81,11 @@ const initColorSelectors = () => {
 
 const updateFog = (e) => {
   e.target.nextElementSibling.innerText = e.target.value;
+  const start = document.querySelector('#fog-start').value;
+  const end = document.querySelector('#fog-end').value
   MANAGER.setFog({
-    start: document.querySelector('#fog-start').value,
-    end: document.querySelector('#fog-end').value
+    start: Math.min(start, end),
+    end: end,
   })
 }
 
@@ -98,23 +102,50 @@ const initFogControls = () => {
   end.nextElementSibling.innerText = end.value;
 }
 
+const initButtons = () => {
+  document.querySelector('#save').onclick = () => {
+    put(CITY_ID, MANAGER.city).then(x => {
+    })
+  }
+
+  document.querySelector('#view').onclick = () => {
+    put(CITY_ID, MANAGER.city).then(x => {
+      window.location.href = '/view?city=' + CITY_ID;
+    })
+  }
+
+  document.querySelector('#delete').onclick = () => {
+    del(CITY_ID).then(x => {
+      window.location.href = '/';
+    })
+  }
+}
 
 
-console.log(window.location.search)
+
+const urlParams = new URLSearchParams(window.location.search);
+CITY_ID = urlParams.get('city');
 
 const loader = new GLTFLoader();
 
 // the gltf loader operated with a callback,
 // therfore mostly everything operates within that callback
+
+
 loader.load(
   '/assets/blocks.glb',
   (gltf) => {
-    MANAGER = new CityManager({}, gltf, true);
-    initUnitList();
-    initColorPicker();
-    initColorSelectors();
-    initListItems();
-    initFogControls();
-    hideLoadScreen();
+    get(CITY_ID).then(data => {
+      let city = {};
+      if (data.data.cityData) city = data.data.cityData;
+      MANAGER = new CityManager(city, gltf, true);
+      initUnitList();
+      initColorPicker();
+      initColorSelectors();
+      initListItems();
+      initFogControls();
+      initButtons();
+      hideLoadScreen();
+    })
   }
 )

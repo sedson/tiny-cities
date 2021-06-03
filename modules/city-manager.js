@@ -32,6 +32,8 @@ class CityManager {
 
     this.city = new City(cityData);
 
+    this.editorState = "build"
+
     // create materials from the city data colors
     this.materials = {
       main: new THREE.MeshLambertMaterial({color: this.city.colors.main}),
@@ -65,15 +67,17 @@ class CityManager {
     this.activePoint = [0,0];
 
 
-    const ground = makeGround(300, whiteMaterial);
+    const ground = makeGround(300, this.materials.main);
     this.scene.add(ground);
     this.raycastObjects.push(ground);
 
     if (editMode) this.scene.add(makeGrid(this.city.size));
 
+    this.previewMat = new THREE.MeshBasicMaterial({color: 'lawngreen', fog: false, transparent: true, opacity: 0.4})
     this.previewer = new THREE.Mesh(
       new THREE.PlaneGeometry(1, 1, 1),
-      new THREE.MeshBasicMaterial({color: 'cyan', fog: false, transparent: true, opacity: 0.4})
+      this.previewMat
+
     );
 
     this.previewer.rotation.set(- Math.PI / 2, 0, 0)

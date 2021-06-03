@@ -2,16 +2,16 @@ const test = `
 {
    "size": 5,
    "colors": {
-      "background": "hsl(28, 96%, 60%)",
-      "ambient": "hsl(0, 88%, 25%)",
+      "background": "hsl(0, 0%, 90%)",
+      "ambient": "hsl(0, 0%, 63%)",
       "main": "hsl(0, 0%, 100%)",
-      "foliage": "hsl(200, 80%, 70%)",
+      "foliage": "hsl(120, 50%, 70%)",
       "accent": "hsl(320, 50%, 70%)"
    },
    "fog": {
       "color": "hsl(0, 0%, 60%)",
-      "start": "6",
-      "end": "21"
+      "start": 0,
+      "end": 30
    },
    "blocks": {
       "0, 0": {
@@ -21,14 +21,8 @@ const test = `
          },
          "height": 0,
          "units": [
-            "Basic",
-            "Basic",
-            "Basic",
-            "Basic",
-            "Basic",
-            "Park",
-            "Basic",
-            "Rounded"
+            "Little",
+            "Little"
          ]
       },
       "0, 1": {
@@ -37,13 +31,7 @@ const test = `
             "z": -1
          },
          "height": 0,
-         "units": [
-            "Rounded",
-            "Rounded",
-            "Rounded",
-            "Rounded",
-            "Rounded"
-         ]
+         "units": []
       },
       "0, 2": {
          "position": {
@@ -51,11 +39,7 @@ const test = `
             "z": 0
          },
          "height": 0,
-         "units": [
-            "Rounded",
-            "Rounded",
-            "Rounded"
-         ]
+         "units": []
       },
       "0, 3": {
          "position": {
@@ -63,10 +47,7 @@ const test = `
             "z": 1
          },
          "height": 0,
-         "units": [
-            "BasicA",
-            "BasicA"
-         ]
+         "units": []
       },
       "0, 4": {
          "position": {
@@ -74,10 +55,7 @@ const test = `
             "z": 2
          },
          "height": 0,
-         "units": [
-            "BasicA",
-            "BasicA"
-         ]
+         "units": []
       },
       "1, 0": {
          "position": {
@@ -85,23 +63,7 @@ const test = `
             "z": -2
          },
          "height": 0,
-         "units": [
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little"
-         ]
+         "units": []
       },
       "1, 1": {
          "position": {
@@ -109,11 +71,7 @@ const test = `
             "z": -1
          },
          "height": 0,
-         "units": [
-            "Little",
-            "Little",
-            "Little"
-         ]
+         "units": []
       },
       "1, 2": {
          "position": {
@@ -122,16 +80,6 @@ const test = `
          },
          "height": 0,
          "units": [
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little",
             "Little",
             "Little"
          ]
@@ -142,18 +90,7 @@ const test = `
             "z": 1
          },
          "height": 0,
-         "units": [
-            "BasicA",
-            "BasicA",
-            "Basic",
-            "Basic",
-            "Park",
-            "Basic",
-            "Park",
-            "Basic",
-            "Rounded",
-            "Rounded"
-         ]
+         "units": []
       },
       "1, 4": {
          "position": {
@@ -161,10 +98,7 @@ const test = `
             "z": 2
          },
          "height": 0,
-         "units": [
-            "BasicA",
-            "BasicA"
-         ]
+         "units": []
       },
       "2, 0": {
          "position": {
@@ -173,7 +107,8 @@ const test = `
          },
          "height": 0,
          "units": [
-            "Rounded"
+            "Little",
+            "Little"
          ]
       },
       "2, 1": {
@@ -182,12 +117,7 @@ const test = `
             "z": -1
          },
          "height": 0,
-         "units": [
-            "Rounded",
-            "Rounded",
-            "Rounded",
-            "Rounded"
-         ]
+         "units": []
       },
       "2, 2": {
          "position": {
@@ -197,17 +127,16 @@ const test = `
          "height": 0,
          "units": [
             "Basic",
+            "Little",
+            "Little",
             "Basic",
-            "Park",
+            "Little",
+            "Little",
             "Basic",
-            "Basic",
-            "Basic",
-            "Basic",
-            "Basic",
-            "Basic",
-            "Basic",
-            "Basic",
-            "Rounded",
+            "Little",
+            "Little",
+            "Little",
+            "Little",
             "Little"
          ]
       },
@@ -218,10 +147,9 @@ const test = `
          },
          "height": 0,
          "units": [
-            "Rounded",
-            "Rounded",
-            "Rounded",
-            "Rounded"
+            "Basic",
+            "BasicA",
+            "Basic"
          ]
       },
       "2, 4": {
@@ -230,12 +158,7 @@ const test = `
             "z": 2
          },
          "height": 0,
-         "units": [
-            "BasicA",
-            "BasicA",
-            "BasicA",
-            "BasicA"
-         ]
+         "units": []
       },
       "3, 0": {
          "position": {
@@ -243,9 +166,7 @@ const test = `
             "z": -2
          },
          "height": 0,
-         "units": [
-            "BasicA"
-         ]
+         "units": []
       },
       "3, 1": {
          "position": {
@@ -253,18 +174,7 @@ const test = `
             "z": -1
          },
          "height": 0,
-         "units": [
-            "Basic",
-            "Basic",
-            "Basic",
-            "Basic",
-            "Basic",
-            "Basic",
-            "Basic",
-            "Park",
-            "Basic",
-            "Rounded"
-         ]
+         "units": []
       },
       "3, 2": {
          "position": {
@@ -273,11 +183,8 @@ const test = `
          },
          "height": 0,
          "units": [
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little"
+            "Basic",
+            "Basic"
          ]
       },
       "3, 3": {
@@ -287,15 +194,10 @@ const test = `
          },
          "height": 0,
          "units": [
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little",
-            "Little"
+            "Rounded",
+            "Rounded",
+            "Rounded",
+            "Rounded"
          ]
       },
       "3, 4": {
@@ -304,10 +206,7 @@ const test = `
             "z": 2
          },
          "height": 0,
-         "units": [
-            "BasicA",
-            "BasicA"
-         ]
+         "units": []
       },
       "4, 0": {
          "position": {
@@ -316,10 +215,8 @@ const test = `
          },
          "height": 0,
          "units": [
-            "Rounded",
-            "Rounded",
-            "Rounded",
-            "Rounded"
+            "Little",
+            "Little"
          ]
       },
       "4, 1": {
@@ -328,10 +225,7 @@ const test = `
             "z": -1
          },
          "height": 0,
-         "units": [
-            "BasicA",
-            "BasicA"
-         ]
+         "units": []
       },
       "4, 2": {
          "position": {
@@ -339,15 +233,7 @@ const test = `
             "z": 0
          },
          "height": 0,
-         "units": [
-            "Basic",
-            "Basic",
-            "Basic",
-            "Basic",
-            "Basic",
-            "Basic",
-            "Basic"
-         ]
+         "units": []
       },
       "4, 3": {
          "position": {
@@ -355,12 +241,7 @@ const test = `
             "z": 1
          },
          "height": 0,
-         "units": [
-            "Little",
-            "Little",
-            "Little",
-            "Little"
-         ]
+         "units": []
       },
       "4, 4": {
          "position": {
@@ -368,10 +249,7 @@ const test = `
             "z": 2
          },
          "height": 0,
-         "units": [
-            "BasicA",
-            "BasicA"
-         ]
+         "units": []
       }
    }
 }
