@@ -1,5 +1,5 @@
-// const BACKEND = 'http://localhost:3000/api/'
-const BACKEND = 'https://morning-dusk-00362.herokuapp.com/api/'
+const BACKEND = 'http://localhost:3000/api/'
+// const BACKEND = 'https://morning-dusk-00362.herokuapp.com/api/'
 
 async function index() {
   const request = {
@@ -43,7 +43,6 @@ async function put(id, data) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      title: 'HI',
       cityData: data
     })
 

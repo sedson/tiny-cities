@@ -27,7 +27,7 @@ const select = (elem) => {
 // gui so that they can be selected
 const initUnitList = () => {
   const unitList = document.querySelector('#unit-list')
-  Object.keys(MANAGER.units).forEach( (unit, index) => {
+  Object.keys(MANAGER.units).sort().forEach( (unit, index) => {
     const li = document.createElement('li');
     li.innerText = unit;
     li.classList.add('option');

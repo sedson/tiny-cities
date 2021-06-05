@@ -91,7 +91,15 @@
   /* border-bottom: 1px solid var(--ui-light); */
 }
 
+#unit-list {
+  height: 9rem;
+  overflow-y: scroll;
+}
 
+#unit-list::-webkit-scrollbar {
+  width: 6px;
+  background: yellow;              /* width of the entire scrollbar */
+}
 
 .control-row {
   display: flex;

@@ -48,6 +48,7 @@ body {
   color: var(--ui-text);
   background: var(--ui-bg);
   font-family: Hack, monospace;
+  scrollbar-width: thin;
 }
 
 .page {
@@ -122,7 +123,7 @@ h2 {
 }
 
 footer {
-  /* position: fixed; */
+  width: 100%;
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -132,6 +133,7 @@ footer {
   transform: translateX(-50%);
   bottom: 2rem;
   margin: 0 auto;
+  background: var(--ui-bg);
 }
 
 footer > * {
@@ -160,7 +162,6 @@ p {
   margin: 2rem 0;
   padding: 1;
   cursor: pointer;
-  /* background: var(--ui--accent); */
 }
 
 .home {
@@ -170,7 +171,7 @@ p {
 
 .widget {
   font-size: 1rem;
-  width: 300px;
+  width: 340px;
   padding: 1rem;
   position: relative;
   overflow: hidden;
@@ -214,10 +215,13 @@ p {
 }
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 400px) {
   .flex-area {
     flex-direction: column;
+  }
 
+  .flex-area > * {
+    margin-bottom: 3rem;
   }
 }
 
@@ -231,4 +235,33 @@ p {
 
 .toggle:hover{
   background: var(--ui-light);
+}
+
+
+hr {
+  border: none;
+  border-bottom: 1px solid var(--ui-light);
+  margin: 3rem 0;
+}
+
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ui-light) transparent;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--ui-light);
+  border-radius: 20px;
+  border: 3px solid transparent;
 }
