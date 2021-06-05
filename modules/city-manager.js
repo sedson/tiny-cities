@@ -44,7 +44,7 @@ class CityManager {
     this.units = parseGLTF(gltfData, this.materials);
 
 
-    this.activeUnit = 'Basic';
+    this.activeUnit = '01_Basic';
 
     // builds the city from data
 
