@@ -145,6 +145,10 @@ loader.load(
       initListItems();
       initFogControls();
       initButtons();
+
+      document.querySelector('#city-name').innerText = data.data.title;
+
+
       hideLoadScreen();
     })
   }

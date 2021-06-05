@@ -38,6 +38,8 @@ loader.load(
         window.location.href = '/edit?city=' + CITY_ID;
       }
 
+      document.querySelector('#city-name').innerText = data.data.title;
+
       hideLoadScreen();
     })
   }

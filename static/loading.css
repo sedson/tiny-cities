@@ -3,7 +3,7 @@
   height: 100vh;
   position: fixed;
   flex-flow: column;
-  background: #eee;
+  background: var(--ui-bg);
   top: 0;
   left: 0;
   padding :1rem;

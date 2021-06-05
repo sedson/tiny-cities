@@ -1,4 +1,5 @@
-const BACKEND = 'http://localhost:3000/api/'
+// const BACKEND = 'http://localhost:3000/api/'
+const BACKEND = 'https://morning-dusk-00362.herokuapp.com/api/'
 
 async function index() {
   const request = {

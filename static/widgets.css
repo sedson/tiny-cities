@@ -1,16 +1,4 @@
-.widget {
-  font-size: 1rem;
-  width: 300px;
-  padding: 1rem;
-  position: relative;
-  overflow: hidden;
-  height: auto;
-  background-color: var(--ui-bg);
-  border-radius: 4px;
-  color: var(--ui-text);
-  margin-bottom: 1rem;
-  user-select: none;
-}
+
 .tranparent{
   background: none;
   color: var(--ui-bg);
@@ -24,9 +12,10 @@
   margin: 0 1.5rem;
   height: 5rem;
   border-radius: 4px;
+  box
   background: var(--ui-bg);
+  border: 1px dotted var(--ui-light);
 }
-
 .option {
   display: block;
   padding: 0.25em;
@@ -61,6 +50,7 @@
 
 .widget h1 {
   font-size: 1rem;
+  text-align: left;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding-bottom: 0.5em;

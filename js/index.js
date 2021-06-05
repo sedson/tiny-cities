@@ -19,8 +19,10 @@ index().then(data => {
       console.log(item)
       const bg = item.cityData.colors.background;
       const a = item.cityData.colors.ambient;
+      const title = document.createElement('span');
+      title.innerText = item.title;
+      card.appendChild(title);
 
-      card.style.background =  `linear-gradient(${bg}, ${a})`
       gallery.appendChild(card);
     }
 

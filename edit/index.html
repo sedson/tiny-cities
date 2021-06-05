@@ -10,6 +10,14 @@
     <script type="module" src="/js/edit.js" defer></script>
 
     <script type="text/javascript">
+      let theme = localStorage.getItem('theme');
+      if (theme) {
+        document.documentElement.setAttribute('data-theme', theme)
+      }
+      // localStorage.setItem('theme', 'dark');
+    </script>
+
+    <script type="text/javascript">
       const toggleCollapse = (e) => {
         console.log(e.target.parentNode)
         e.target.parentNode.classList.toggle('collapse')
@@ -31,9 +39,8 @@
     <div id="editor">
 
       <div class="widget">
-        <h1>Tiny Cities</h1>
+        <h1><a href="/" class="home">← Tiny Cities</a> / <span id="city-name"></span></h1>
         <div class="">
-          <a class="button" href="/">Home</a>
           <span role="button" class="button" id="save">Save</span>
           <span role="button" class="button" id="view">View</span>
           <span role="button" class="button" id="delete">Delete</span>
@@ -130,9 +137,5 @@
 
       </div>
     </div>
-    <footer>
-      <a class="button" style="display: inline-block" href="/">HOME</a>
-    </footer>
-
   </body>
 </html>
