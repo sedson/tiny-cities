@@ -15,12 +15,16 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 // -----------------------------------------
 const ROTATION_SPEED = 0.003;
 const FOV = 20;
+const FOV_MIN = 20;
+const FOV_MAX = 50;
 const NEAR = 0.1;
 const FAR = 1000;
 const VIEW_TARGET = 0.5;
 const FOG_START = 0;
 const FOG_END = 20;
 
+const lerp = (a, b, w) => a + ( b - a) * w;
+const clamp01 = x => Math.max(Math.min(x, 1), 0)
 
 // Class that handles basic config and
 // init of a threeJS scene.
@@ -36,9 +40,11 @@ class SceneSkeleton {
     this.scene = new Scene();
     // this.scene.fog = new Fog();
 
+    const aspect = window.innerWidth / window.innerHeight;
+
     this.camera = new PerspectiveCamera(
-      params.fov || FOV,
-      window.innerWidth / window.innerHeight,
+      lerp(FOV_MIN, FOV_MAX, 1 - clamp01(aspect)),
+      aspect,
       params.near || NEAR,
       params.far || FAR
     );
@@ -129,7 +135,10 @@ class SceneSkeleton {
   }
 
   resize() {
-    this.camera.aspect = window.innerWidth / window.innerHeight;
+    const aspect = window.innerWidth / window.innerHeight
+    this.camera.aspect = aspect;
+    this.camera.fov = lerp(FOV_MIN, FOV_MAX, 1 - clamp01(aspect));
+    console.log(clamp01(aspect));
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(window.innerWidth ,  window.innerHeight);
   }

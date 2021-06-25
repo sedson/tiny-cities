@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils'
 import { SceneSkeleton } from './scene-skeleton.js';
 import { City } from './city.js'
 import { makeGround, makeGrid } from './geometry-helpers.js'
@@ -18,8 +19,6 @@ const camParams = {
 
 class CityManager {
   constructor(cityData, gltfData, editMode = false) {
-
-    // Load the units from the asset file
 
     // initializae the scene
     this.scene = new SceneSkeleton(camParams, editMode);
@@ -45,6 +44,7 @@ class CityManager {
 
 
     this.activeUnit = '01_Basic';
+
 
     // builds the city from data
 
@@ -73,24 +73,28 @@ class CityManager {
 
     if (editMode) this.scene.add(makeGrid(this.city.size));
 
-    this.previewMat = new THREE.MeshBasicMaterial({color: 'lawngreen', fog: false, transparent: true, opacity: 0.4})
+    this.previewMat = new THREE.MeshBasicMaterial({color: 'cyan', fog: false, transparent: true, opacity: 0.3, wireframe: false})
     this.previewer = new THREE.Mesh(
       new THREE.PlaneGeometry(1, 1, 1),
       this.previewMat
 
     );
 
-    this.previewer.rotation.set(- Math.PI / 2, 0, 0)
+    // this.previewer.rotation.set(- Math.PI / 2, 0, 0)
 
     if (editMode) this.scene.add(this.previewer);
-
+    this.setActiveUnit(this.activeUnit);
 
     if (editMode) {
       this.scene.subscribe(() => {
         this.activePoint = (this.raycaster.raycast(this.raycastObjects, this.city.size));
         if (this.activePoint) {
           const block = this.city.getBlock(this.activePoint.x, this.activePoint.z);
-          if (block) this.previewer.position.set(block.position.x, 0.01, block.position.z)
+          if (block) {
+            const h = (block.units.length ) * UNIT_HEIGHT
+            this.previewer.position.set(block.position.x, h, block.position.z)
+            // this.previewer.scale.set(1, h, 1);
+          }
         } else {
           this.previewer.position.set(0, -10, 0)
          }
@@ -208,6 +212,31 @@ class CityManager {
 
   setActiveUnit(unit) {
     this.activeUnit = unit;
+    let newGeometry;
+
+    let unitData = this.units[this.activeUnit];
+
+    if (unitData.type === "Mesh") {
+      newGeometry = unitData.geometry;
+      this.previewer.geometry.dispose();
+      this.previewer.geometry = newGeometry;
+    }
+
+    else if (unitData.type === "Group") {
+
+      const newGeos = unitData.children.map(x => x.geometry);
+
+      newGeometry = BufferGeometryUtils.mergeBufferGeometries(newGeos);
+      this.previewer.geometry.dispose();
+      this.previewer.geometry = newGeometry;
+    }
+    else {
+      console.log('not')
+    }
+
+    // this.previewer.geometry.dispose();
+    console.log(this.units[this.activeUnit])
+    // this.previewer.geometry = this.units[this.activeUnit].geometry;
   }
 
 }

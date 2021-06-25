@@ -8,12 +8,13 @@
 
 :root{
   --ui-bg: #eee;
-  --ui-text: #666;
+  --ui-text: #444;
   --ui-mid: #aaa;
   --ui-light: #ccc;
   --ui-very-light: #ddde;
   --ui-selected: #000;
   --ui--accent: #c5c5c5;
+  --ui-fun: #c2bafd;
 
   font-size: 14px;
   line-height: 1.6;
@@ -27,11 +28,7 @@ html[data-theme='dark'] {
   --ui-very-light: #333;
   --ui-selected: #fff;
   --ui--accent: #7f7f7f;
-}
-
-
-:root.dark {
-
+  --ui-fun: #6a6ba8;
 }
 
 * {
@@ -123,6 +120,7 @@ h2 {
 }
 
 footer {
+  background: var(--ui-fun);
   width: 100%;
   display: flex;
   flex-flow: row wrap;
@@ -131,9 +129,10 @@ footer {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 2rem;
+  bottom: 0rem;
+  padding: 1rem 0;
   margin: 0 auto;
-  background: var(--ui-bg);
+  /* background: var(--ui-bg); */
 }
 
 footer > * {
@@ -190,7 +189,7 @@ p {
 }
 
 .svg-b {
-  fill: var(--ui--accent);
+  fill: var(--ui-fun);
 }
 
 #theme {
@@ -223,12 +222,16 @@ p {
   .flex-area > * {
     margin-bottom: 3rem;
   }
+
+  .half {
+    width: 100%;
+  }
 }
 
 .toggle {
   /* background-color: var(--ui-light); */
   padding: 0.1em 0.5em;
-  border: 1px solid var(--ui-light);
+  /* border: 1px solid var(--ui-light); */
   border-radius: 4px;
   cursor: pointer;
 }
