@@ -121,6 +121,7 @@ const initButtons = () => {
   }
 }
 
+// NEW THING TEST
 
 
 const urlParams = new URLSearchParams(window.location.search);
