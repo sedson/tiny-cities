@@ -126,7 +126,7 @@ class CityManager {
       document.addEventListener('keydown', (event) => {
         console.log(event.keyCode);
         if(event.keyCode === 8) {
-
+          event.preventDefault();
           this.unstackBlock();
         } else if (event.keyCode === 83) {
           console.log(JSON.stringify(this.city, null, 3))
