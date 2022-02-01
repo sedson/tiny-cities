@@ -1,5 +1,7 @@
 import { index } from '/modules/requests.js';
 
+
+
 index().then(data => {
   const gallery = document.querySelector('#map');
   data = data.data.filter(x => x.cityData);
@@ -7,6 +9,7 @@ index().then(data => {
     const item = data[i];
     const node = document.createElement('a');
     node.classList.add('node');
+
 
     const nodeButton = document.createElement('div');
     nodeButton.classList.add('node-button');
@@ -23,14 +26,15 @@ index().then(data => {
 
     let s = 0;
     for (let i = 0; i < item.title.length; i++) {
-      s += item.title.charCodeAt(i);
+      s += item.title.charCodeAt(i) * i;
     }
-    let a = 733;
-    let b = 337;
+    s *= item.title.length * item.title.charCodeAt(0);
+    let a = 337;
+    let b = 733;
     console.log(s);
     node.style.top = ((s % a) / a) * 90 + 5  + '%';
     console.log(node.style.top)
-    node.style.left = ((s % b) /b) * 90 + 5 + '%';
+    node.style.left = ((s % b) / b) * 90 + 5 + '%';
 
     node.appendChild(nodeButton);
     node.appendChild(title);

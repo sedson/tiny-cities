@@ -50,7 +50,7 @@ class SceneSkeleton {
     );
 
     // configue camera to orbit the center
-    this.camera.position.set(9, 1, 9);
+    this.camera.position.set(9, 4, 9);
     this.camera.lookAt(0, this.viewTarget, 0);
     this.camGroup = new Group();
     this.camGroup.add(this.camera);

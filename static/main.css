@@ -227,7 +227,6 @@ p {
   vertical-align: baseline;
   border: none;
   color: var(--ui-mid);
-
 }
 
 .node:hover {
@@ -246,6 +245,16 @@ p {
 
 .label {
   font-size: 1rem;
+}
+
+
+
+.list .node {
+  position: relative;
+  left: 0 !important;
+  top: 0 !important;
+  justify-content: flex-start;
+  margin-bottom: 0.5rem;
 }
 
 

@@ -29,5 +29,11 @@
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+      console.log(document.referrer)
+      if (document.referrer.includes('map')) {
+        document.querySelector('.home').href = '/map'
+      }
+    </script>
   </body>
 </html>

@@ -10,16 +10,27 @@
     <script type="text/javascript" src="/js/colortheme.js"></script>
 
     <script type="module" src="/js/map.js" defer></script>
-
-
-
+    <script type="text/javascript">
+      const toggleList = () => {
+        const gallery = document.querySelector('#map');
+        gallery.classList.toggle('list');
+        const button = document.querySelector('#list');
+        if (gallery.classList.contains('list')) {
+          button.innerText = 'Map';
+        } else {
+          button.innerText = 'List';
+        }
+      }
+    </script>
     <title>Tiny Cities – Map</title>
   </head>
   <body>
     <div class="widget">
       <h1><a href="/" class="home">← Tiny Cities</a> / Map</h1>
+      <span onclick="toggleList()" class="button" id="list">List</span>
     </div>
     <div id="map">
+
     </div>
 
 
