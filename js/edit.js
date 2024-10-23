@@ -1,7 +1,7 @@
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { CityManager } from '../modules/city-manager.js';
 import ColorWidget from '../modules/color-widget.js'
-import { put, get, del} from '../modules/requests.js'
+import { put, get, del } from '../modules/requests.js'
 
 
 let SELECTED_COLOR = 'background';
@@ -27,7 +27,7 @@ const select = (elem) => {
 // gui so that they can be selected
 const initUnitList = () => {
   const unitList = document.querySelector('#unit-list')
-  Object.keys(MANAGER.units).sort().forEach( (unit, index) => {
+  Object.keys(MANAGER.units).sort().forEach((unit, index) => {
     const li = document.createElement('li');
     li.innerText = unit;
     li.classList.add('option');
@@ -104,8 +104,7 @@ const initFogControls = () => {
 
 const initButtons = () => {
   document.querySelector('#save').onclick = () => {
-    put(CITY_ID, MANAGER.city).then(x => {
-    })
+    put(CITY_ID, MANAGER.city).then(x => {})
   }
 
   document.querySelector('#view').onclick = () => {
@@ -138,7 +137,7 @@ loader.load(
   (gltf) => {
     get(CITY_ID).then(data => {
       let city = {};
-      if (data.data.cityData) city = data.data.cityData;
+      if (data.cityData) city = data.cityData;
       MANAGER = new CityManager(city, gltf, true);
       initUnitList();
       initColorPicker();
@@ -147,7 +146,7 @@ loader.load(
       initFogControls();
       initButtons();
 
-      document.querySelector('#city-name').innerText = data.data.title;
+      document.querySelector('#city-name').innerText = data.title;
 
 
       hideLoadScreen();

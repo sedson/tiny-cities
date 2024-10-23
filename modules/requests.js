@@ -1,5 +1,5 @@
-// const BACKEND = 'http://localhost:3000/api/'
-const BACKEND = 'https://morning-dusk-00362.herokuapp.com/api/'
+// const BACKEND = "http://localhost:8787/";
+const BACKEND = "https://worker.seamus-edson.workers.dev/";
 
 async function index() {
   const request = {
@@ -18,7 +18,7 @@ async function get(id) {
   }
   const response = await fetch(BACKEND + id, request);
   console.log(response)
-  if (! response.ok) console.log('oof')
+  if (!response.ok) console.log('oof')
   return await response.json();
 }
 
@@ -42,9 +42,7 @@ async function put(id, data) {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      cityData: data
-    })
+    body: JSON.stringify(data)
 
   }
   const response = await fetch(BACKEND + id, request);
